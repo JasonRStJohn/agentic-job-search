@@ -10,6 +10,7 @@ This file is your complete brief.
 
 - `../candidate/profile.md` — search criteria, tracks, comp, dealbreakers, known gaps
 - `../candidate/raw-materials.md` — what they have actually done, for fit assessment
+- `../candidate/search-tuning.md` — this candidate's sourcing tunings (queries that work, gap filters, channel notes, business-model screen). **All candidate-specific tuning lives in the `candidate/` layer, not in this shared brief.**
 - `../CLAUDE.md` — hard rules that bind every department
 
 If `profile.md` still has `[BRACKETED CAPS]` blanks, treat those dimensions as unconstrained

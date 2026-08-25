@@ -76,6 +76,10 @@ python3 tools/vikunja_sync.py applications/<folder>
 It self-configures from `.env` and **skips silently if unconfigured or unreachable** — the
 pipeline never depends on it. This is one option; the pipeline is fully functional without it.
 
+## Where candidate-specific tuning lives
+
+**All candidate-specific tuning and adjustments live in the `candidate/` layer, never in a shared system file.** The search queries that surface your roles, the gaps to filter, channel notes, business-model screens, angle preferences: these belong in `candidate/profile.md`, `candidate/raw-materials.md`, or `candidate/search-tuning.md`, which the generic briefs read at runtime. Every `*/Context.md`, `CLAUDE.md`, `tools/` script, and template stays portable. If you catch yourself hard-coding a candidate-specific query, gap, employer, or preference into one of those, that is the signal to move it into `candidate/` instead. The `candidate/` layer is git-ignored, so keeping tuning there is also what keeps it out of the shared, shippable repo.
+
 ## The pipeline
 
 ```

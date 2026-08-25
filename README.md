@@ -87,6 +87,10 @@ cp -r candidate.example candidate
    Under-reporting here is the main way real experience goes missing from your applications.
 3. **`candidate/master-resume-*.md`** — one complete, generic master resume per track. The
    resume writers tailor *from* these; they never invent.
+4. **`candidate/search-tuning.md`** (recommended) — the sourcing tunings specific to you: the
+   queries that surface your roles, the gaps to filter out, channel notes. Keeping these here,
+   in the git-ignored layer, is what stops candidate-specific tuning from leaking back into the
+   shared briefs.
 
 ### 3. (Optional) connect a task tracker
 
