@@ -169,23 +169,27 @@ def main(argv):
         api(url, tok, "POST", f"/tasks/{tid}",
             {"id": tid, "description": desc, "priority": priority_for(meta["fit"])})
         det = api(url, tok, "GET", f"/tasks/{tid}")
-        have = {a.get("file", {}).get("name") for a in (det.get("attachments") or [])}
+        have = {a.get("file", {}).get("name"): a.get("id")
+                for a in (det.get("attachments") or [])}
         print(f"vikunja_sync: updated task id={tid}: {meta['title']}")
     else:
         task = api(url, tok, "PUT", f"/projects/{pid}/tasks",
                    {"title": meta["title"], "description": desc,
                     "priority": priority_for(meta["fit"])})
         tid = task["id"]
-        have = set()
+        have = {}
         print(f"vikunja_sync: created task id={tid}: {meta['title']}")
 
+    # Refresh attachments: attachments are content snapshots, so a changed file must be
+    # re-uploaded. Delete any existing same-name attachment first, then upload the current one.
     for m in sorted(glob.glob(os.path.join(folder, "*.md"))):
         name = os.path.basename(m)
-        if name in have:
-            print(f"   kept    {name}")
-            continue
+        refreshed = name in have
+        if refreshed:
+            api(url, tok, "DELETE", f"/tasks/{tid}/attachments/{have[name]}")
         ok, out = attach(url, tok, tid, m)
-        print(f"   {'attached' if ok else 'FAILED  '} {name}  {'' if ok else out}")
+        verb = ("refreshed" if refreshed else "attached ") if ok else "FAILED   "
+        print(f"   {verb} {name}  {'' if ok else out}")
     return 0
 
 
