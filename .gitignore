@@ -1,0 +1,32 @@
+# === The private candidate layer — never commit ===
+# Copy candidate.example/ to candidate/ and fill it in. The real thing stays local.
+candidate/
+
+# === Real applications — private ===
+# Dated opportunity folders and the real catalog. The template and the example index stay tracked.
+applications/2*/
+applications/_index/log.md
+
+# === Secrets ===
+.env
+.env.*
+!.env.example
+
+# === Dropped postings (raw intake) ===
+recruiters/inbox/*
+!recruiters/inbox/README.md
+
+# === Optional: personal watchlists / sweep configs, if you add them ===
+recruiters/company-watchlist.txt
+recruiters/passed-on.md
+
+# === OS / editor noise ===
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# scratch
+/tmp/
+*.tmp
