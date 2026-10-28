@@ -13,6 +13,9 @@ Copy `candidate.example/` to `candidate/`, rename this to `profile.md`, and comp
 - **Email:** [EMAIL]
 - **Phone:** [PHONE]
 - **GitHub / portfolio:** [LINKS, or note "not public yet, do not link"]
+- **Final file-name prefix:** [e.g. JaneDoe] (finished PDFs become `<Prefix>_<Employer>_Resume.pdf`)
+- **Public profile to match:** [e.g. LinkedIn URL]. Titles and dates on every resume must agree
+  with it; a mismatch reads as fabrication in a background check.
 
 ## Status
 

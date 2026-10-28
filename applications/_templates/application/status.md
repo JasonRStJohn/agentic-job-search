@@ -23,6 +23,7 @@
 - [ ] Critiqued — [date] (verdict: ...)
 - [ ] Fixes applied — [date]
 - [ ] the seeker's read
+- [ ] Finalized — [date] (placeholders resolved, final-named PDFs)
 - [ ] Submitted — [date, method/URL]
 - [ ] Response
 - [ ] Outcome logged

@@ -1,13 +1,15 @@
 # Job Search, run as a recruiting department
 
 A portable workflow for running your own job search as a set of cooperating AI agent roles,
-instead of one chat that tries to do everything. Four "departments" each own a job and a
+instead of one chat that tries to do everything. Five "departments" each own a job and a
 plain-Markdown brief the agent reads in full:
 
 - **recruiters** — find and qualify openings
 - **resume-writers** — tailor a master resume to one posting
 - **writers-room** — draft cover letters in two or three genuinely different angles
 - **hiring-staff** — critique the finished package **cold**, the way a real screener would
+- **application-assistant** — finalize the package (no placeholders ship; final file names only
+  when it is safe to send) and help fill in the employer's application form
 
 An orchestrator (any capable model — Claude Code, a local model, a plain chat window) routes
 work by pointing an agent at the right department's `Context.md`. Nothing depends on a
@@ -37,7 +39,8 @@ flowchart TB
         res["resume-writers<br/>tailor a master"]
         wr["writers-room<br/>2–3 cover-letter angles"]
         hs["hiring-staff<br/>COLD critique<br/>fresh agent, no context"]
-        rec --> res --> wr --> hs
+        aa["application-assistant<br/>finalize + form help<br/>with the job seeker"]
+        rec --> res --> wr --> hs --> aa
     end
 
     apps[("applications/ folder<br/>shared state: posting, resume,<br/>cover-letter, critique, status")]
@@ -50,7 +53,7 @@ flowchart TB
 ```
 
 **Solid arrows** are the pipeline flow; **dashed** are reads-from / optional. Every request is
-routed by `CLAUDE.md`, which also enforces the hard rules across all four stages. The one rule
+routed by `CLAUDE.md`, which also enforces the hard rules across all five stages. The one rule
 the diagram is built around: **hiring-staff runs cold** — a fresh agent that never saw the
 package get written, so its ninety-second verdict is the real screener's, not a co-author's.
 

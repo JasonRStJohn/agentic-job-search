@@ -33,7 +33,8 @@ Do not create these up front. They exist when the work reaches them:
 
 These are produced *from* the source `.md` files and are what actually gets submitted. Editing them directly is how a resume and its PDF silently disagree. One home per fact: the `.md` is the home; regenerate the export after any edit.
 
-- `resume.html`, `<Name>_<Company>_Resume.pdf` — rendered from `resume.md`.
+- `resume.html`, `resume-draft.pdf`, `cover-letter-draft.pdf` — work-in-progress renders. Any PDF made before the package is finalized carries a draft name.
+- `<Prefix>_<Employer>_Resume.pdf`, `<Prefix>_<Employer>_CoverLetter.pdf` (and `_CoverLetter_Resume.pdf` when the form has one upload slot) — **final** renders, named only after `application-assistant/Context.md`'s finalize checklist passes: no placeholders, no missing parts. A final name means safe to send as-is; drafts are deleted at that point.
 - `cover-letter.txt` — plain-text export of `cover-letter.md` (for paste-into-a-textbox application forms).
 
 If an export and its source drift, the source wins; re-export.

@@ -54,7 +54,10 @@ explanation to the cover letter.
 - **Redact former-employer internals.** The abstraction level in the master is the ceiling.
   Describe the engineering problem, not proprietary specifics or client names.
 - **Preserve `[BRACKETED CAPS]` placeholders.** Do not invent a name or a date to make the
-  document look finished. Carry the brackets through and report them.
+  document look finished. Carry the brackets through and list them under
+  "Open before submit" in `status.md`. They are resolved with the job seeker during
+  finalization (`application-assistant/Context.md`); any PDF you render before then uses the
+  draft name `resume-draft.pdf`.
 - **Keep numbers consistent.** If the master states experience one way ("12 years, 8 as a
   lead"), the resume and the cover letter must agree. Two different headline numbers for the
   same person is an instant credibility ding.

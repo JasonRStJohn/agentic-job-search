@@ -40,6 +40,7 @@ recruiters/            finds and qualifies openings        (Context.md)
 resume-writers/        tailors a master resume to one posting   (Context.md)
 writers-room/          drafts cover letters, multiple angles    (Context.md)
 hiring-staff/          critiques the finished package, cold     (Context.md)
+application-assistant/ finalizes the package, helps fill the form (Context.md)
 applications/          one folder per opportunity
   _index/log.md          GIT-IGNORED catalog: one row per opportunity, status, next action
   _templates/application/ the stamp: every new opportunity is a copy of this
@@ -59,8 +60,10 @@ the file and let it read the whole thing.
 | "tailor my resume for X" | resume-writers | `resume-writers/Context.md` |
 | "write a cover letter for X" | writers-room | `writers-room/Context.md` |
 | "how does this package look", "is this ready" | hiring-staff | `hiring-staff/Context.md` |
+| "make the PDFs", "is it ready to send", "finalize X" | application-assistant | `application-assistant/Context.md` |
+| "I'm filling out the application", a pasted form question | application-assistant | `application-assistant/Context.md` |
 | "where does the search stand" | (read directly) | `applications/_index/log.md` |
-| "run the whole pipeline on X" | all four, in order | see below |
+| "run the whole pipeline on X" | all five, in order | see below |
 
 **New opportunity = copy `applications/_templates/application/`, then add a row to
 `applications/_index/log.md`.** Keep the log's row current whenever a folder's stage changes.
@@ -83,11 +86,18 @@ pipeline never depends on it. This is one option; the pipeline is fully function
 ## The pipeline
 
 ```
-recruiter → resume-writer → writers-room → hiring-staff
+recruiter → resume-writer → writers-room → hiring-staff → application-assistant
 ```
 
 Each stage writes into the same `applications/<folder>/` and reads what the previous stage
 produced. Full-pipeline runs go in order; each stage gets its own agent.
+
+**Draft names until final.** Any PDF rendered before the application-assistant's finalize
+checklist passes is named `resume-draft.pdf` / `cover-letter-draft.pdf`. Only a package with
+no placeholders and no missing parts gets the final name (`<Prefix>_<Employer>_Resume.pdf`,
+prefix from `candidate/profile.md`). A final name means "safe to send as-is." The
+application-assistant usually runs inline with the job seeker rather than as a dispatched
+agent, because finalizing means asking them questions.
 
 **The hiring-staff stage must run in a fresh agent with no prior context.** Its whole value
 is judging the package the way a stranger receiving it cold would. An agent that watched the
@@ -110,8 +120,13 @@ These apply to every department. They exist because breaking them costs real opp
    level already in the master resumes is fine. Proprietary detail, client names, and
    internal data are not. When unsure, describe the engineering problem, not the specifics.
 4. **Never name freelance/consulting clients** beyond what the master resumes already name.
-5. **Flag placeholders loudly.** Anything unknown goes in as `[BRACKETED CAPS]` and gets
-   reported to the job seeker. Never quietly guess a fact about their life.
+5. **Flag placeholders loudly, then resolve them before finishing.** Anything unknown goes in
+   as `[BRACKETED CAPS]` in a working draft and gets reported to the job seeker. Never quietly
+   guess a fact about their life. **But a placeholder is a question, not a deliverable:**
+   before rendering any final PDF or calling a package ready, ask the job seeker for every
+   open placeholder (check the candidate files first, and ask only for what is genuinely
+   missing), fill them in, and record the answers in `candidate/raw-materials.md` so they are
+   never asked twice. A final PDF must never ship with a bracket in it.
 
 ## House style
 
